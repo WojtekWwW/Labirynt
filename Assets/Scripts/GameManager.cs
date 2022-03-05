@@ -1,14 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-    public int timeToEnd;
+    [SerializeField] int timeToEnd;
     bool gamePaused = false;
     bool endGame = false;
     bool win = false;
+    public int points = 0;
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,14 +31,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("TimeToEnd: " + timeToEnd + "s");
         InvokeRepeating("Stopper", 2, 1);
     }
-        void Stopper()
+    void Stopper()
     {
         timeToEnd--;
-        Debug.Log("TimeToEnd: " + timeToEnd + "s");
-        if (endGame)
-        {
-            return;
-        }
+        Debug.Log($"Time: {timeToEnd} s");
 
         if (timeToEnd <= 0)
         {
@@ -41,8 +42,9 @@ public class GameManager : MonoBehaviour
             endGame = true;
         }
 
+        if (endGame)
+            EndGame();
     }
-    
 
     // Update is called once per frame
     void Update()
@@ -74,4 +76,30 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gamePaused = false;
     }
+    public void EndGame()
+    {
+        CancelInvoke("Stopper");
+        if (win)
+            Debug.Log("You win! Reload?");
+        else
+            Debug.Log("You lose! Reload?");
+    }
+    public void AddPoints(int point)
+    {
+        points += point;
+    }
+    public void AddTime(int time)
+    {
+        timeToEnd += time;
+    }
+    public void SubstractTime(int time)
+    {
+        timeToEnd -= time;
+    }
+    public void FreezeTime(int freeze)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freeze, 1);
+    }
+
 }

@@ -67,8 +67,11 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-/*        else {
-            Debug.Log("No ground detected");
-        }*/
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+       
+        if (hit.gameObject.tag == "PickUp")
+            hit.gameObject.GetComponent<PickUp>().Picked();
     }
 }
