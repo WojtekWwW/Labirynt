@@ -1,5 +1,5 @@
 //Add Poins
-public class Crystal : PickUp
+public class PointAdder : PickUp
 {
     public int points = 5;
 
