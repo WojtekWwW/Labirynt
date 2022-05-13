@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
             timeToEnd = 100;
         }
 
-        Debug.Log("TimeToEnd: " + timeToEnd + "s");
+/*        Debug.Log("TimeToEnd: " + timeToEnd + "s");*/
+        Debug.Log($"Time: {timeToEnd} s");
         InvokeRepeating("Stopper", 2, 1);
     }
     void Stopper()

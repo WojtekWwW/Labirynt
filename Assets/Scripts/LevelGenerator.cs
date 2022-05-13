@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateTile(int x, int z)
     {
-        Color pixelColor = map.GetPixel(x, z);
+        /*Color pixelColor = map.GetPixel(x, z);
 
         if (pixelColor.a == 0)
             return;
@@ -21,19 +21,19 @@ public class LevelGenerator : MonoBehaviour
                 Vector3 position = new Vector3(x, 0, z) * offset;
                 Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
             }
-        }
+        }*/
     }
     public void GenerateLabirynth()
     {
         //map.width;
         //map.height;
-        for(int z=0;z<map.height; z++)
+        /*for(int z=0;z<map.height; z++)
         {
             for (int x = 0; x < map.width; x++)
             {
                 GenerateTile(x, z);
             }
-        }
+        }*/
 
     }
    

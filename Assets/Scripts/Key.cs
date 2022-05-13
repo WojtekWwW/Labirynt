@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Key : PickUp
-
 {
     public KeyColor keyColor;
     public override void Picked()

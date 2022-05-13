@@ -17,7 +17,7 @@ public class PickUp : MonoBehaviour
     }
     public virtual void  Picked()
     {
-        Debug.Log("picked");
+        Debug.Log("Picked!");
         Destroy(this.gameObject);
     }
     public void Rotation()
