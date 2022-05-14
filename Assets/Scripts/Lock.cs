@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Lock : MonoBehaviour
@@ -14,7 +12,6 @@ public class Lock : MonoBehaviour
     private void Start()
     {
         key = GetComponent<Animator>();
-        Debug.Log("Start: GetComponent<Animator>()");
     }
 
     private void Update()
@@ -32,7 +29,7 @@ public class Lock : MonoBehaviour
 
     public bool CheckTheKey()
     {
-        if ( GameManager.gameManager.redKey > 0 && myKeyColor == KeyColor.Red)
+        if (GameManager.gameManager.redKey > 0 && myKeyColor == KeyColor.Red)
         {
             GameManager.gameManager.redKey--;
             locked = true;

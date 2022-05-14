@@ -28,8 +28,6 @@ public class Door : MonoBehaviour
                 closePosition.position,
                 Time.deltaTime * speed);
         }
-
-
     }
 
     public void CloseOpen()
