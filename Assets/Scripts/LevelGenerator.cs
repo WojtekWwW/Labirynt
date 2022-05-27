@@ -13,7 +13,9 @@ public class LevelGenerator : MonoBehaviour
         Color pixelColor = map.GetPixel(x, z);
 
         if (pixelColor.a == 0)
+        {
             return;
+        }
         foreach (ColorToPrefab colorMapping in colorMappings)
         {
             if (colorMapping.color.Equals(pixelColor))
@@ -26,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateLabirynth()
     {
         // map.width;
-        //map.height;
+        // map.height;
         for (int z = 0; z < map.height; z++)
         {
             for (int x = 0; x < map.width; x++)
@@ -46,22 +48,22 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (UnityEngine.Random.Range(1, 100) % 3 == 0)
                 {
-                    child.gameObject.GetComponent<Renderer>().material = material01;
+                    child.gameObject.GetComponent<Renderer>().sharedMaterial = material01;
                 }
                 else
                 {
-                    child.gameObject.GetComponent<Renderer>().material = material02;
+                    child.gameObject.GetComponent<Renderer>().sharedMaterial = material02;
                 }
             }
 
             if (child.childCount > 0)
             {
-                foreach (Transform grandchild in transform)
+                foreach (Transform grandchild in child.transform)
                 {
                     if (grandchild.tag == "Wall")
                     {
-                        grandchild.gameObject.GetComponent<Renderer>().material =
-                     child.gameObject.GetComponent<Renderer>().material;
+                        grandchild.gameObject.GetComponent<Renderer>().sharedMaterial =
+                     child.gameObject.GetComponent<Renderer>().sharedMaterial;
                     }
                 }
             }
@@ -69,3 +71,4 @@ public class LevelGenerator : MonoBehaviour
 
 
     }
+}
