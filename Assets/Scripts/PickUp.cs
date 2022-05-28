@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    public AudioClip pickedClip;
     // Start is called before the first frame update
     void Start()
     {

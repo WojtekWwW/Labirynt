@@ -13,7 +13,11 @@ public class GameManager : MonoBehaviour
     public int goldKey = 0;
 
 
-
+    AudioSource audioSource;
+    [SerializeField] AudioClip pauseGameClip;
+    [SerializeField] AudioClip resumeGameClip;
+    [SerializeField] AudioClip winClip;
+    [SerializeField] AudioClip loseClip;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +31,8 @@ public class GameManager : MonoBehaviour
         {
             timeToEnd = 100;
         }
-
-/*        Debug.Log("TimeToEnd: " + timeToEnd + "s");*/
+        audioSource = GetComponent<AudioSource>();
+        /*        Debug.Log("TimeToEnd: " + timeToEnd + "s");*/
         Debug.Log($"Time: {timeToEnd} s");
         InvokeRepeating("Stopper", 2, 1);
     }
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if(gamePaused)
+            if (gamePaused)
             {
                 ResumeGame();
             }
@@ -62,9 +66,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void PlayClip(AudioClip audioClip)
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
 
     public void PauseGame()
     {
+        PlayClip(pauseGameClip);
         Debug.LogWarning("Pause Game");
         Time.timeScale = 0f;
         gamePaused = true;
@@ -73,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        PlayClip(resumeGameClip);
         Debug.LogWarning("Resume Game");
         Time.timeScale = 1f;
         gamePaused = false;
@@ -81,9 +92,17 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke("Stopper");
         if (win)
+        {
+            PlayClip(winClip);
             Debug.Log("You win! Reload?");
+        }
+
         else
+        {
+            PlayClip(loseClip);
             Debug.Log("You lose! Reload?");
+        }
+
     }
     public void AddPoints(int point)
     {
@@ -105,7 +124,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddKey(KeyColor keyColor)
     {
-        switch(keyColor)
+        switch (keyColor)
         {
             case KeyColor.Red:
                 redKey++;
